@@ -1,25 +1,58 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-function App() {
+const HomePage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const data = { email, password }
+    try {
+      const response = await axios.post('/api/login', data);
+      if(response.status === 200){
+        <Link to="/trips">Trips</Link>
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    const data = { email, password }
+    try {
+      const response = await axios.post('/api/register', data);
+      if(response.status === 201){
+        <Link to="/trips">Trips</Link>
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Tricount App Clone</h1>
+      <form>
+        <label>
+          Email:
+          <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
+        </label>
+        <br />
+        <button type="submit" onClick={handleLogin}>Sign In</button>
+        <button type="submit" onClick={handleSignUp}>Sign Up</button>
+      </form>
     </div>
   );
 }
 
-export default App;
+export default HomePage;
