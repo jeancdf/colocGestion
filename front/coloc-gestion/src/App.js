@@ -46,7 +46,7 @@ export default function App() {
         <Route path="/addnewexpenses" element={<AddNewExpenses/>} />
         <Route path="/newcoloc" element={<NewColoc/>} />
         <Route path="/summary" element={<Summary/>} />
-        <Route path="/" element={<Home/>} />
+        <Route path="/home" element={<Home/>} />
         </Routes> }
       </div>
     </Router>

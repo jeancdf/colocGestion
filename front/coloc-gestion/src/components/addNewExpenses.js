@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Form, FormControl, FormGroup, FormLabel, Select, Button } from 'react-bootstrap';
 
 const AddExpenseForm = ({ tricountId, participants }) => {
   const [name, setName] = useState('');
@@ -22,25 +23,40 @@ const AddExpenseForm = ({ tricountId, participants }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Expense Name:</label>
-      <input type="text" id="name" value={name} onChange={(event) => setName(event.target.value)} />
-      <br />
-      <label htmlFor="amount">Amount:</label>
-      <input type="text" id="amount" value={amount} onChange={(event) => setAmount(event.target.value)} />
-      <br />
-      <label htmlFor="assignee">Assignee:</label>
-      <select id="assignee" value={assignee} onChange={(event) => setAssignee(event.target.value)}>
-        {participants.map((participant) => (
-          <option key={participant} value={participant}>
-            {participant}
-          </option>
-        ))}
-      </select>
-      <br />
-      {error && <p>{error}</p>}
-      <button type="submit">Add Expense</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+            <FormGroup>
+                <FormLabel htmlFor="name">Expense Name:</FormLabel>
+                <FormControl 
+                    id="name" 
+                    value={name} 
+                    onChange={(event) => setName(event.target.value)} 
+                />
+            </FormGroup>
+            <FormGroup>
+                <FormLabel htmlFor="amount">Amount:</FormLabel>
+                <FormControl 
+                    id="amount" 
+                    value={amount} 
+                    onChange={(event) => setAmount(event.target.value)} 
+                />
+            </FormGroup>
+            <FormGroup>
+                <FormLabel htmlFor="assignee">Assignee:</FormLabel>
+                <Select 
+                    id="assignee" 
+                    value={assignee} 
+                    onChange={(event) => setAssignee(event.target.value)} 
+                >
+                    {/* {participants.map((participant) => (
+                        <option key={participant} value={participant}>
+                            {participant}
+                        </option>
+                    ))} */}
+                </Select>
+            </FormGroup>
+            {error && <p>{error}</p>}
+            <Button type="submit">Add Expense</Button>
+        </Form>
   );
 };
 
