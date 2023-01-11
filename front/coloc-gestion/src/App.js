@@ -1,58 +1,93 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form, Button } from 'react-bootstrap';
 
-const HomePage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const data = { email, password }
-    try {
-      const response = await axios.post('/api/login', data);
-      if(response.status === 200){
-        <Link to="/trips">Trips</Link>
-      }
-    } catch (error) {
-      console.error(error);
-    }
+const Home = () => {
+    const [showSignIn, setShowSignIn] = useState(true);
+    const [formData, setFormData] = useState({ email: '', password: '' });
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setFormData({ ...formData, [name]: value });
+    };
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+      console.log(formData);
+    };
+  
+    return (
+      <div>
+        <h1>Coloc Gestion</h1>
+        {showSignIn ? (
+          <Form onSubmit={handleFormSubmit}>
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Enter email"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Enter password"
+              />
+            </Form.Group>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems:'center'}}>
+            <Button className="m-3" type="submit">Sign In</Button>
+            </div>
+          </Form>
+        ) : (
+          <Form onSubmit={handleFormSubmit}>
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Enter email"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Enter password"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                placeholder="Enter confirm password"
+              />
+            </Form.Group>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems:'center'}}>
+            <Button type="submit">Sign Up</Button>
+            </div>
+          </Form>
+        )}
+        <Button className="m-3" onClick={() => setShowSignIn(!showSignIn)}>
+          {showSignIn ? 'Sign Up' : 'Sign In'}
+        </Button>
+      </div>
+    );
   };
-
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    const data = { email, password }
-    try {
-      const response = await axios.post('/api/register', data);
-      if(response.status === 201){
-        <Link to="/trips">Trips</Link>
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return (
-    <div>
-      <h1>Tricount App Clone</h1>
-      <form>
-        <label>
-          Email:
-          <input type="email" name="email" onChange={(e) => setEmail(e.target.value)}/>
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
-        </label>
-        <br />
-        <button type="submit" onClick={handleLogin}>Sign In</button>
-        <button type="submit" onClick={handleSignUp}>Sign Up</button>
-      </form>
-    </div>
-  );
-}
-
-export default HomePage;
+  
+  export default Home;
