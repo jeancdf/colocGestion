@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 
 const Summary = ({ colocId }) => {
   const [summary, setSummary] = useState({});
@@ -23,12 +24,20 @@ const Summary = ({ colocId }) => {
   }
 
   return (
-    <>
-      <h2>Summary</h2>
-      <p>Total cost: {summary.totalCost}</p>
-      <p>Number of expenses: {summary.numExpenses}</p>
-      <p>Average cost per person: {summary.avgCostPerPerson}</p>
-    </>
+    <Container>
+      <Row>
+        <Col>
+          <Card>
+            <Card.Header>Summary</Card.Header>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Total cost: {summary.totalCost}</ListGroup.Item>
+              <ListGroup.Item>Number of expenses: {summary.numExpenses}</ListGroup.Item>
+              <ListGroup.Item>Average cost per person: {summary.avgCostPerPerson}</ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

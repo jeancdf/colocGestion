@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Form, FormControl, Button, Alert, Row, Col } from 'react-bootstrap';
 
 const NewColoc = () => {
   const [name, setName] = useState('');
@@ -18,16 +19,22 @@ const NewColoc = () => {
 //     };
   
     return (
-      <form >
-        <label htmlFor="name">Coloc Name:</label>
-        <input type="text" id="name" value={name} onChange={(event) => setName(event.target.value)} />
-        <br />
-        <label htmlFor="participants">Participants:</label>
-        <input type="text" id="participants" value={participants} onChange={(event) => setParticipants(event.target.value)} />
-        <br />
-        {error && <p>{error}</p>}
-        <button type="submit">Create coloc</button>
-      </form>
+        <Row className="justify-content-md-center">
+      <Col xs={12} md={8}>
+         <Form >
+          <Form.Group>
+            <Form.Label>Coloc Name:</Form.Label>
+            <FormControl value={name} onChange={(event) => setName(event.target.value)} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Participants:</Form.Label>
+            <FormControl value={participants} onChange={(event) => setParticipants(event.target.value)} />
+          </Form.Group>
+          {error && <Form.Text>{error}</Form.Text>}
+          <Button className="m-3"type="submit">Create coloc</Button>
+        </Form>
+      </Col>
+    </Row>
     );
   };
   
