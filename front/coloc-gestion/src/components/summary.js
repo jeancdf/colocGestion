@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Summary = ({ tricountId }) => {
+const Summary = ({ colocId }) => {
   const [summary, setSummary] = useState({});
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`/api/tricounts/${tricountId}/summary`);
-        setSummary(response.data);
-      } catch (error) {
-        console.error(error);
-        setError('Error loading summary');
-      }
-    };
-    fetchData();
-  }, [tricountId]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.get(`/api/coloc/${colocId}/summary`);
+//         setSummary(response.data);
+//       } catch (error) {
+//         console.error(error);
+//         setError('Error loading summary');
+//       }
+//     };
+//     fetchData();
+//   }, [colocId]);
 
   if (error) {
     return <p>{error}</p>;

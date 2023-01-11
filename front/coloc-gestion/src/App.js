@@ -1,93 +1,54 @@
+import React from "react";
 import './App.css';
-import React, { useCallback, useState } from 'react';
-import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Button } from 'react-bootstrap';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Routes
+} from "react-router-dom";
 
+// These are the components that will be rendered by the router
+import Home from "./components/home";
+import ExpenseList from "./components/expensesList";
+import AddNewExpenses from "./components/addNewExpenses";
+import NewColoc from "./components/newColoc";
+import Summary from "./components/summary";
 
-const Home = () => {
-    const [showSignIn, setShowSignIn] = useState(true);
-    const [formData, setFormData] = useState({ email: '', password: '' });
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setFormData({ ...formData, [name]: value });
-    };
-    const handleFormSubmit = (event) => {
-      event.preventDefault();
-      console.log(formData);
-    };
-  
-    return (
+export default function App() {
+  return (
+    <Router>
       <div>
-        <h1>Coloc Gestion</h1>
-        {showSignIn ? (
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Enter email"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                placeholder="Enter password"
-              />
-            </Form.Group>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems:'center'}}>
-            <Button className="m-3" type="submit">Sign In</Button>
-            </div>
-          </Form>
-        ) : (
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Enter email"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                placeholder="Enter password"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                placeholder="Enter confirm password"
-              />
-            </Form.Group>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems:'center'}}>
-            <Button type="submit">Sign Up</Button>
-            </div>
-          </Form>
-        )}
-        <Button className="m-3" onClick={() => setShowSignIn(!showSignIn)}>
-          {showSignIn ? 'Sign Up' : 'Sign In'}
-        </Button>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/home">home</Link>
+            </li>
+            <li>
+              <Link to="/expenselist">expenselist</Link>
+            </li>
+            <li>
+              <Link to="/addnewexpenses">addnewexpenses</Link>
+            </li>
+            <li>
+              <Link to="/newcoloc">newcoloc</Link>
+            </li>
+            <li>
+              <Link to="/summary">summary</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        { <Routes>
+        <Route path="/expenselist" element={<ExpenseList/>} />
+        <Route path="/addnewexpenses" element={<AddNewExpenses/>} />
+        <Route path="/newcoloc" element={<NewColoc/>} />
+        <Route path="/summary" element={<Summary/>} />
+        <Route path="/" element={<Home/>} />
+        </Routes> }
       </div>
-    );
-  };
-  
-  export default Home;
+    </Router>
+  );
+}
