@@ -4,7 +4,7 @@ namespace App\Manager;
 
 use App\Entity\Flatsharing;
 
-class PostManager extends BaseManager
+class FlatsharingManager extends BaseManager
 {
 
     public function getUserFlatsharing($user_id)

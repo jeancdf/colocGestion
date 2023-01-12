@@ -1,22 +1,37 @@
-CREATE TABLE IF NOT EXISTS User
-(
-    id        INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    username  VARCHAR(255) NOT NULL,
-    password  VARCHAR(255) NOT NULL,
-    UNIQUE (username)
+-- Users table
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  userName VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
 );
 
-CREATE TABLE IF NOT EXISTS Post
-(
-    id      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    content TEXT,
-    author  int NOT NULL
+-- flatsharing table
+CREATE TABLE flatsharing (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  admin_id BOOL INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
-CREATE TABLE IF NOT EXISTS Comment
-(
-    id      INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    content TEXT,
-    postId  int NOT NULL,
-    author  int NOT NULL
+
+-- Expenses table
+CREATE TABLE expenses (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  flatsharing_id INT NOT NULL,
+  user_id INT NOT NULL,
+  amount DECIMAL(10, 2) NOT NULL,
+  date DATE NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  FOREIGN KEY (flatsharing_id) REFERENCES flatsharing(id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
-ALTER TABLE `Post` ADD `lastUpdated` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+
+-- Participants table
+CREATE TABLE participants (
+  user_id INT NOT NULL,
+  flatsharing_id INT NOT NULL,
+  accepted BOOL NOT NULL
+  PRIMARY KEY (user_id, flatsharing_id),
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (flatsharing_id) REFERENCES trips(id)
+);
