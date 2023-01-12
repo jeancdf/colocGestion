@@ -3,15 +3,15 @@ CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT,
   userName VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
 -- flatsharing table
 CREATE TABLE flatsharing (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  admin_id BOOL INT NOT NULL,
+  admin_id INT NOT NULL,
   name VARCHAR(255) NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (admin_id) REFERENCES users(id)
 );
 
 -- Expenses table
@@ -30,8 +30,8 @@ CREATE TABLE expenses (
 CREATE TABLE participants (
   user_id INT NOT NULL,
   flatsharing_id INT NOT NULL,
-  accepted BOOL NOT NULL
+  accepted BOOL NOT NULL,
   PRIMARY KEY (user_id, flatsharing_id),
   FOREIGN KEY (user_id) REFERENCES users(id),
-  FOREIGN KEY (flatsharing_id) REFERENCES trips(id)
+  FOREIGN KEY (flatsharing_id) REFERENCES flatsharing(id)
 );
