@@ -11,9 +11,6 @@ class User extends BaseEntity implements UserInterface, PasswordProtectedInterfa
     private string $username;
     private string $password;
     private string $email;
-    private string $firstName;
-    private string $lastName;
-    private ?string $gender;
     private $roles;
 
     /**
@@ -67,60 +64,6 @@ class User extends BaseEntity implements UserInterface, PasswordProtectedInterfa
     public function setEmail(string $email): User
     {
         $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFirstName(): string
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * @param string $firstName
-     * @return User
-     */
-    public function setFirstName(string $firstName): User
-    {
-        $this->firstName = $firstName;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     * @return User
-     */
-    public function setLastName(string $lastName): User
-    {
-        $this->lastName = $lastName;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGender(): string
-    {
-        return $this->gender;
-    }
-
-    /**
-     * @param string $gender
-     * @return User
-     */
-    public function setGender(string $gender): User
-    {
-        $this->gender = $gender;
         return $this;
     }
 

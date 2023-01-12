@@ -42,17 +42,11 @@ const AddExpenseForm = ({ tricountId, participants }) => {
             </FormGroup>
             <FormGroup>
                 <FormLabel htmlFor="assignee">Assignee:</FormLabel>
-                <Select 
-                    id="assignee" 
-                    value={assignee} 
-                    onChange={(event) => setAssignee(event.target.value)} 
-                >
                     {/* {participants.map((participant) => (
                         <option key={participant} value={participant}>
                             {participant}
                         </option>
                     ))} */}
-                </Select>
             </FormGroup>
             {error && <p>{error}</p>}
             <Button type="submit">Add Expense</Button>
