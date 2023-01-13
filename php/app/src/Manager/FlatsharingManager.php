@@ -26,8 +26,8 @@ class FlatsharingManager extends BaseManager
     {
         $this->pdo->query("INSERT INTO flatsharing(admin_id, name ) VALUES ('$user_Id','$name')"); 
         $id = $this->pdo->query("select id from flatsharing WHERE admin_id='$user_Id'"); 
-        $id = $id->fetch(\PDO::FETCH_DEFAULT);
-        $query = $this->pdo->query("INSERT INTO participants(user_id, flatsharing_id, accepted) VALUES ('$user_Id','$id', 'true')"); 
+        $id = $id->fetch(\PDO::FETCH_COLUMN);
+        $query = $this->pdo->query("INSERT INTO participants(user_id, flatsharing_id, accepted) VALUES ('$user_Id','$id', True)"); 
 
     }
 

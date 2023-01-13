@@ -3,17 +3,13 @@
 namespace App\Controller;
 
 use App\Factory\PDOFactory;
-use App\Manager\PostManager;
-use App\Manager\UserManager;
+use App\Manager\FlatsharingManager;
 use App\Route\Route;
-use DateTimeImmutable;
-use Firebase\JWT\Key;
-use Firebase\JWT\JWT;
 
 class FlatsharingController extends AbstractController
 {
     #[Route('/flatsharing', name: "flatsharing", methods: ["GET"])]
-    public function home()
+    public function flatsharing()
     {   
         // $tok = getallheaders()['authorization'];
         // $secretKey  = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew=';
@@ -28,12 +24,13 @@ class FlatsharingController extends AbstractController
         //     echo 'Token not found3';
         //     exit;
         // }
-        $manager = new FlatsharingManager(new PDOFactory());
-        // $id = $token->ID;
         $id = 1;
         var_dump($id);
+        $manager = new FlatsharingManager(new PDOFactory());
+        // $id = $token->ID;
+
         $flatsharing = $manager->CreateFlatsharing($id, 'test');
-        echo json_encode($flatsharing);
+        var_dump('created');
         exit;
     }
 }
