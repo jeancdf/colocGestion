@@ -6,8 +6,13 @@ import Box from '@mui/material/Box';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+interface Props {
+    colocId: string;
+    
+    
+    }
 
-const AddExpenseForm = ({ tricountId, participants }) => {
+export default function AddExpensesForm () {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
     const [assignee, setAssignee] = useState('');
@@ -22,7 +27,7 @@ const AddExpenseForm = ({ tricountId, participants }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(`/api/tricounts/${tricountId}/expenses`, { name, amount, assignee });
+            const response = await axios.post(`/api/tricounts/${colocId}/expenses`, { name, amount, assignee });
             console.log(response.data);
             setName('');
             setAmount('');
@@ -96,6 +101,4 @@ const AddExpenseForm = ({ tricountId, participants }) => {
         </Container>
 
     );
-};
-
-export default AddExpenseForm;
+}

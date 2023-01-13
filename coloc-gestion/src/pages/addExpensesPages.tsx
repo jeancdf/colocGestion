@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AddExpenseForm from '../components/AddExpenseForm';
-import Summary from '../components/Summary';
+import AddNewExpenses from '../../components/addNewExpenses';
+import Summary from '../../components/Summary';
 
-const AddExpensePage = ({ match }) => {
-  const [tricount, setTricount] = useState({});
+export default function AddExpensePage () {
+    const [tricount, setTricount] = useState({});
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -27,10 +27,9 @@ const AddExpensePage = ({ match }) => {
   return (
     <>
       <h1>Add Expense</h1>
-      <AddExpenseForm tricountId={match.params.tricountId} participants={tricount.participants} />
-      <Summary tricountId={match.params.tricountId} />
+      <AddNewExpenses colocId={match.params.tricountId} participants={tricount.participants} />
+      <Summary colocId={match.params.tricountId} />
     </>
   );
-};
+}
 
-export default AddExpensePage;

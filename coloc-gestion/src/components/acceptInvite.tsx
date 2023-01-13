@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap';
 import axios from 'axios';
 
-const AcceptInvites = () => {
-    const [username, setUsername] = useState('');
-    const [error, setError] = useState('');
-  
+interface Props{}
+
+const AcceptInvites: React.FC<Props> = () => {
+const [username, setUsername] = useState('');
+const [error, setError] = useState('');
+
+
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
