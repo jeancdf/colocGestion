@@ -11,21 +11,21 @@ import AddNewExpenses from "./components/addNewExpenses"
 import Login from "./components/login"
 import SignUp from "./components/signUp";
 import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState} from "react";
-import {setJwt, getJwt} from "./variables/JWT"
+import {setJwt, getJwt, deleteJwt} from "./variables/JWT"
 
 export default function App() {
 
     const mounted = useRef<boolean>(false)
 
-   
+    const [jwt, setjwt] = useState(false)
+
     useEffect(() => {
         if (!mounted.current) {
             if (getJwt()) {
+                setjwt(true)
                 console.log('your logged');
             }
-            // fetch("http://localhost:5656")
-            //     .then(data => data.json())
-            //     .then(json => console.log(json))
+
         }
 
         mounted.current = true
@@ -35,7 +35,7 @@ export default function App() {
 
         <BrowserRouter>
             <div>
-              {mounted.current && (
+              {jwt && (
           <Navbar className="p-2 mb-3" bg="dark" variant="dark">
             <Navbar.Brand>Tricount App</Navbar.Brand>
             <Nav className="ml-auto">
@@ -45,6 +45,7 @@ export default function App() {
               <Nav.Link as={Link} to="/newcoloc">New Coloc</Nav.Link>
               <Nav.Link as={Link} to="/summary">Summary</Nav.Link>
               <Nav.Link as={Link} to="/acceptinvites">Invitations</Nav.Link>
+              <button onClick={deleteJwt}>Logout</button>
             </Nav>
           </Navbar>
         )}
