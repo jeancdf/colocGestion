@@ -59,11 +59,11 @@ export default function SignUp() {
 
     return (
         <form onSubmit={handleSubmit} className=" text-center">
-            <input type="text" name="username" onChange={handleChange} className=" m-1"/>
+            <input type="text" name="username" placeholder="username" onChange={handleChange} className=" m-1"/>
             <br/>
-            <input type="text" name="email" onChange={handleChange} className=" m-1"/>
+            <input type="text" name="email" placeholder="email" onChange={handleChange} className=" m-1"/>
             <br/>
-            <input type="password" name="password" onChange={handleChange} className=" m-1"/>
+            <input type="password" name="password" placeholder="password" onChange={handleChange} className=" m-1"/>
             <br/>
             <Link to='addnewexpenses' ><button type="submit" className=" btn btn-primary m-2" >Sign Up</button></Link>
             <br />
