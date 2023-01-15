@@ -16,9 +16,9 @@ class FlatsharingController extends AbstractController
     public function flatsharing()
     {   
         $tokenManager = new TokenManager();
-        $auth = getallheaders()['Authorization'];
-        $id = $tokenManager->checkToken($auth);
+        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
         if ($id) {
+            var_dump('error token');
             exit;
         }
         $manager = new FlatsharingManager(new PDOFactory());

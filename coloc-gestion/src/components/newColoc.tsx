@@ -7,7 +7,6 @@ import {setJwt, getJwt} from "../variables/JWT"
 const NewColoc = () => {
 
  const token = getJwt();
- axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   const [name, setName] = useState('');
   const [participants, setParticipants] = useState('');
   const [error, setError] = useState('');
@@ -15,7 +14,7 @@ const NewColoc = () => {
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     try {
-      const response = await axios.get('/flatsharing/create', {
+      const response = await axios.get('http://localhost:5656/flatsharing/create', {
         headers: {
           Authorization: `Bearer ${token}`
         }
