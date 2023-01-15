@@ -16,7 +16,7 @@ class ParticipantController extends AbstractController
     public function inviteParticipant()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
         if ($id) {
             exit;
         }
@@ -30,7 +30,7 @@ class ParticipantController extends AbstractController
     public function acceptParticipant()
     {
         $tokenManager = new TokenManager();
-        $token = $tokenManager->checkToken(getallheaders()['authorization']);
+        $token = $tokenManager->checkToken(getallheaders()['Authorization']);
         if ($token == false) {
             exit;
         }
@@ -45,7 +45,7 @@ class ParticipantController extends AbstractController
     public function declineParticipant()
     {
         $tokenManager = new TokenManager();
-        $token = $tokenManager->checkToken(getallheaders()['authorization']);
+        $token = $tokenManager->checkToken(getallheaders()['Authorization']);
         if ($token == false) {
             exit;
         }

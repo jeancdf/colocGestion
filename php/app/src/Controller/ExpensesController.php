@@ -13,7 +13,7 @@ class ExpensesController extends AbstractController
     public function expenses()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
         if ($id) {
             exit;
         }
@@ -30,7 +30,7 @@ class ExpensesController extends AbstractController
     public function deleteexpenses()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
         if ($id) {
             exit;
         }
@@ -44,7 +44,7 @@ class ExpensesController extends AbstractController
     public function getexpenses()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
         if ($id) {
             exit;
         }

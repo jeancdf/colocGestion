@@ -16,7 +16,8 @@ class FlatsharingController extends AbstractController
     public function flatsharing()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        $auth = getallheaders()['Authorization'];
+        $id = $tokenManager->checkToken($auth);
         if ($id) {
             exit;
         }
@@ -30,7 +31,7 @@ class FlatsharingController extends AbstractController
     public function userflatsharing()
     {
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
         if ($id) {
             exit;
         }
