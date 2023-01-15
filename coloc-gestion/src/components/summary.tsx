@@ -37,11 +37,11 @@ export default function Summary () {
           <Col>
             <Card>
               <Card.Header>Summary</Card.Header>
-              <ListGroup variant="flush">
+              {/* <ListGroup variant="flush">
                 <ListGroup.Item>Total cost: {summary.totalCost}</ListGroup.Item>
                 <ListGroup.Item>Number of expenses: {summary.numExpenses}</ListGroup.Item>
                 <ListGroup.Item>Average cost per person: {summary.avgCostPerPerson}</ListGroup.Item>
-              </ListGroup>
+              </ListGroup> */}
             </Card>
           </Col>
         </Row>

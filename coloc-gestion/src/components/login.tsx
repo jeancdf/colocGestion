@@ -2,12 +2,13 @@ import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, use
 import {btoa} from "buffer";
 import {setJwt, getJwt} from "../variables/JWT"
 import {BrowserRouter, Routes ,Route, Link} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 export interface formDataInterface {
     username: string,
     password: string
 }
 
-export default function Form(props:any) {
+export default function Login(props:any) {
 
     const mounted = useRef<boolean>(false)
 

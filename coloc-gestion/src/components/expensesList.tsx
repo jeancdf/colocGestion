@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function ExpensesList () {
   //   const { tricounts, setTricounts } = useContext(ExpenseList);
-  const [coloc, dispatch] = useReducer(Reducer,0,  Initializer);
+//   const [coloc, dispatch] = useReducer(Reducer,0,  Initializer);
   
 //   useEffect(() => {
 //     const id = props.match.params.id;
@@ -21,7 +21,7 @@ export default function ExpensesList () {
     <Container>
       <Row>
         <Col>
-          <h1>{coloc.name}</h1>
+          <h1>okay</h1>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -32,7 +32,7 @@ export default function ExpensesList () {
               </tr>
             </thead>
             <tbody>
-              {/* {tricount.expenses.map((expense, idx) => (
+              {/* {coloc.expenses.map((expense, idx) => (
                 <tr key={idx}>
                   <td>{expense.name}</td>
                   <td>{expense.amount}</td>

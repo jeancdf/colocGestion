@@ -6,12 +6,12 @@ import { Form, Button } from 'react-bootstrap';
 
 const Home = () => {
     const [showSignIn, setShowSignIn] = useState(true);
-    const [formData, setFormData] = useState({ email: '', password: '' });
-    const handleInputChange = (event) => {
+    const [formData, setFormData] = useState({ email: '', password: '',confirmPassword:'' });
+    const handleInputChange = (event: { target: { name: any; value: any; }; }) => {
       const { name, value } = event.target;
       setFormData({ ...formData, [name]: value });
     };
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = (event: { preventDefault: () => void; }) => {
       event.preventDefault();
       console.log(formData);
     };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Form, FormControl, FormGroup, FormLabel, Select, Button } from 'react-bootstrap';
+import { Container, Form, FormControl, FormGroup, FormLabel, Button } from 'react-bootstrap';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -24,32 +24,32 @@ export default function AddExpensesForm () {
         antoine: false,
     });
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const response = await axios.post(`/api/tricounts/${colocId}/expenses`, { name, amount, assignee });
-            console.log(response.data);
-            setName('');
-            setAmount('');
-            setAssignee('');
-        } catch (error) {
-            console.error(error);
-            setError('Error adding expense');
-        }
-    };
+    // const handleSubmit = async (event: { preventDefault: () => void; }) => {
+    //     event.preventDefault();
+    //     try {
+    //         const response = await axios.post(`/api/tricounts/${colocId}/expenses`, { name, amount, assignee });
+    //         console.log(response.data);
+    //         setName('');
+    //         setAmount('');
+    //         setAssignee('');
+    //     } catch (error) {
+    //         console.error(error);
+    //         setError('Error adding expense');
+    //     }
+    // };
 
-    function handleChange(event) {
-        var updatedState = Object.assign({}, state);
-        updatedState[event.target.name] = event.target.checked;
-        setState(updatedState);
-    }
+    // function handleChange(event: { target: { name: string | number; checked: any; }; }) {
+    //     var updatedState = Object.assign({}, state);
+    //     updatedState[event.target.name] = event.target.checked;
+    //     setState(updatedState);
+    // }
 
     const { gilad, jason, antoine } = state;
 
 
     return (
         <Container className="d-flex  justify-content-center" style={{ minHeight: '100vh' }}>
-            <Form onSubmit={handleSubmit}>
+            <Form >
                 <FormGroup>
                     <FormLabel htmlFor="name">Expense Name:</FormLabel>
                     <FormControl
@@ -72,7 +72,7 @@ export default function AddExpensesForm () {
                 </FormGroup>
                
                         <FormLabel component="legend">Assign responsibility</FormLabel>
-                        <FormGroup sx={{ m: 3 }} component="fieldset" variant="standard">
+                        {/* <FormGroup sx={{ m: 3 }} component="fieldset" variant="standard">
                             <FormControlLabel
                                 control={
                                     <Checkbox checked={gilad} onChange={handleChange} name="gilad" />
@@ -91,7 +91,7 @@ export default function AddExpensesForm () {
                                 }
                                 label="Antoine Llorca"
                             />
-                        </FormGroup>
+                        </FormGroup> */}
                         <FormHelperText>Be careful</FormHelperText>
 
                     

@@ -1,5 +1,5 @@
 import React from 'react';
-import NewColoc from '../../components/newColoc';
+import NewColoc from '../components/newColoc';
 
 export default function NewTricountPage () {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import Summary from '../../components/Summary';
-import {Match} from '../../context/context';
+import Summary from '../components/summary';
+import {Match} from '../context/context';
 
 export default function summaryPage () {
 
@@ -8,7 +8,7 @@ export default function summaryPage () {
     return (
     <>
       <h1>Summary</h1>
-      <Summary colocId={myMatch.params.colocId} />
+      {/* <Summary colocId={myMatch.params.colocId} /> */}
     </>
   );
 }

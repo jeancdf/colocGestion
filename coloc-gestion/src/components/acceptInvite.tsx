@@ -9,7 +9,7 @@ const [username, setUsername] = useState('');
 const [error, setError] = useState('');
 
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: { preventDefault: () => void; }) => {
       event.preventDefault();
       try {
         // Make a request to the server to join the tricount using the username
