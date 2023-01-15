@@ -3,7 +3,7 @@ import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default function ExpensesList () {
-  //   const { tricounts, setTricounts } = useContext(ExpenseList);
+  //   const { colocs, Colocs } = useContext(ExpenseList);
 //   const [coloc, dispatch] = useReducer(Reducer,0,  Initializer);
   
 //   useEffect(() => {

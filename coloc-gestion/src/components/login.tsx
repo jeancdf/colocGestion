@@ -3,6 +3,7 @@ import {btoa} from "buffer";
 import {setJwt, getJwt} from "../variables/JWT"
 import {BrowserRouter, Routes ,Route, Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router-dom";
 export interface formDataInterface {
     username: string,
     password: string
@@ -10,9 +11,10 @@ export interface formDataInterface {
 
 export default function Login(props:any) {
 
-    const mounted = useRef<boolean>(false)
-
-    const [formData, setFormData] = useState<formDataInterface>({password: "", username: ""})
+    const mounted = useRef<boolean>(false);
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState<formDataInterface>({password: "", username: ""});
+    const [currentPage, setCurrentPage] = useState('home');
 
     useEffect(() => {
         if (!mounted.current) {
@@ -26,6 +28,7 @@ export default function Login(props:any) {
 
         mounted.current = true
     }, [])
+
 
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -48,6 +51,7 @@ export default function Login(props:any) {
                 window.location.reload();
             })
     }
+    
 
     const handleChange = (e: ChangeEvent) => {
         setFormData(prevState => {
@@ -67,7 +71,7 @@ export default function Login(props:any) {
                 <input type="password" name="password" placeholder="password" onChange={handleChange} className=" m-1"/>
                 <br/>
                 <button type="submit" className=" btn btn-primary m-2">login</button>
-                <Link to='signup' ><button type="submit" className=" btn btn-warning m-2">Register Instead</button></Link>
+                <button  className=" btn btn-warning m-2" onClick={() => navigate('/signup')}>Register Instead</button>
             </form>
         </>
     )

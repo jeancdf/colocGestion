@@ -1,6 +1,8 @@
 import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState} from "react";
 import {btoa} from "buffer";
 import {BrowserRouter, Routes ,Route, Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 export interface formDataInterface {
     username: string,
@@ -12,6 +14,7 @@ export default function SignUp() {
     const mounted = useRef<boolean>(false)
 
     const [formData, setFormData] = useState<formDataInterface>({password: "", username: ""})
+    const navigate = useNavigate();
     var state = {
         showMessage: false
       }
@@ -45,6 +48,7 @@ export default function SignUp() {
         })
             .then(data => data.text())
             .then(json => console.log(json))
+            .then(() =>navigate('/login'))
     }
 
     const handleChange = (e: ChangeEvent) => {
@@ -65,9 +69,9 @@ export default function SignUp() {
             <br/>
             <input type="password" name="password" placeholder="password" onChange={handleChange} className=" m-1"/>
             <br/>
-            <Link to='addnewexpenses' ><button type="submit" className=" btn btn-primary m-2" >Sign Up</button></Link>
+            <button type="submit"  className=" btn btn-primary m-2" >Sign Up</button>
             <br />
-            <Link to='login' ><button type="submit" className=" btn btn-danger m-2" >Already have an account ?</button></Link>
+            <button type="submit" onClick={() => navigate('/login')}className=" btn btn-danger m-2" >Already have an account ?</button>
         </form>
     )
 }

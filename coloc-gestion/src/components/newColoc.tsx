@@ -7,16 +7,16 @@ const NewColoc = () => {
   const [participants, setParticipants] = useState('');
   const [error, setError] = useState('');
 
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     try {
-//       const response = await axios.post('/api/coloc', { name, participants: participants.split(',') });
-//       console.log(response.data);
-//     } catch (error) {
-//         console.error(error);
-//         setError('Error creating coloc');
-//       }
-//     };
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    try {
+      const response = await axios.get('/flatsharing/create');
+      console.log(response.data);
+    } catch (error) {
+        console.error(error);
+        setError('Error creating coloc');
+      }
+    };
   
     return (
         <Row className="justify-content-md-center">
