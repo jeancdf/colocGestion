@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, FormControl, Button, Alert, Row, Col } from 'react-bootstrap';
+import {setJwt, getJwt} from "../variables/JWT"
+
 
 const NewColoc = () => {
+
+ const token = getJwt();
+ axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   const [name, setName] = useState('');
   const [participants, setParticipants] = useState('');
   const [error, setError] = useState('');
@@ -10,7 +15,11 @@ const NewColoc = () => {
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     try {
-      const response = await axios.get('/flatsharing/create');
+      const response = await axios.get('/flatsharing/create', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       console.log(response.data);
     } catch (error) {
         console.error(error);
@@ -21,7 +30,7 @@ const NewColoc = () => {
     return (
         <Row className="justify-content-md-center">
       <Col xs={12} md={8}>
-         <Form >
+         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Coloc Name:</Form.Label>
             <FormControl value={name} onChange={(event) => setName(event.target.value)} />

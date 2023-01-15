@@ -48,7 +48,7 @@ export default function Login(props:any) {
             .then(data => data.text())
             .then(json => {
                 setJwt(json);
-                window.location.reload();
+                navigate('/newcoloc')
             })
     }
     
