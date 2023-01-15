@@ -12,7 +12,7 @@ class UserManager extends BaseManager
      */
     public function getAllUsers(): array
     {
-        $query = $this->pdo->query("select * from User");
+        $query = $this->pdo->query("select * from users");
 
         $users = [];
 
@@ -25,7 +25,7 @@ class UserManager extends BaseManager
 
     public function getByUsername(string $username): ?User
     {
-        $query = $this->pdo->prepare("SELECT * FROM User WHERE username = :username");
+        $query = $this->pdo->prepare("SELECT * FROM users WHERE username = :username");
         $query->bindValue("username", $username, \PDO::PARAM_STR);
         $query->execute();
         $data = $query->fetch(\PDO::FETCH_ASSOC);
@@ -37,9 +37,9 @@ class UserManager extends BaseManager
         return null;
     }
 
-    public function insertUser($formUsername,$formPwd)
+    public function insertUser($formUsername,$formPwd, $formemail)
     {
-        $query = $this->pdo->prepare("INSERT INTO User (username,password) VALUES ('$formUsername','$formPwd')");
+        $query = $this->pdo->prepare("INSERT INTO users (username,password,email) VALUES ('$formUsername','$formPwd', '$formemail')");
         $query->execute();
         
     }

@@ -54,12 +54,14 @@ class SecurityController extends AbstractController
     }
     #[Route('/signup', name: "signup", methods: ["GET","POST"])]
     public function signup() {
-        if (isset($_POST['password']) || isset($_POST['username'])){
+        if (isset($_POST['password']) && isset($_POST['username']) && isset($_POST['email']) ){
             $formUsername = $_POST['username'];
             $formPwd = $_POST['password'];
+            $formEmail = $_POST['email'];
             $userManager = new UserManager(new PDOFactory());
-            $userManager->insertUser($formUsername,$formPwd);
+            $userManager->insertUser($formUsername,$formPwd,$formEmail);
             echo "account created!!!";
         }
+        exit;
     }
 }

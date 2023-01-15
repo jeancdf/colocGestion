@@ -4,8 +4,7 @@ namespace App\Controller;
 
 use App\Factory\PDOFactory;
 use App\Manager\ParticipantManager;
-use App\Manager\TokenManager;
-use App\Route\Rouate;
+use App\Route\Route;
 use DateTimeImmutable;
 use Firebase\JWT\Key;
 use Firebase\JWT\JWT;
@@ -13,7 +12,7 @@ use App\Manager\TokenManager;
 
 class ParticipantController extends AbstractController
 {
-    #[Route('/participant/invite', name: "participant", methods: ["POST"])]
+    #[Route('/participant/invite', name: "inviteParticipant", methods: ["POST"])]
     public function inviteParticipant()
     {   
         $tokenManager = new TokenManager();
@@ -27,7 +26,7 @@ class ParticipantController extends AbstractController
         var_dump('invited');
         exit;
     }
-    #[Route('/participant/accept', name: "accept", methods: ["POST"])]
+    #[Route('/participant/accept', name: "acceptParticipant", methods: ["POST"])]
     public function acceptParticipant()
     {
         $tokenManager = new TokenManager();
@@ -42,7 +41,7 @@ class ParticipantController extends AbstractController
         var_dump('accepted');
         exit;
     }
-    #[Route('/participant/decline', name: "decline", methods: ["POST"])]
+    #[Route('/participant/decline', name: "declineParticipant", methods: ["POST"])]
     public function declineParticipant()
     {
         $tokenManager = new TokenManager();
@@ -56,5 +55,5 @@ class ParticipantController extends AbstractController
         $manager->declineUserToFlatsharing($id, $flatsharing_Id);
         var_dump('declined');
         exit;
-    }ƒ
+    }
 }

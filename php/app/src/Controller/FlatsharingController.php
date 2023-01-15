@@ -25,7 +25,8 @@ class FlatsharingController extends AbstractController
         var_dump('created');
         exit;
     }
-    #[Route('/userflatsharing', name: "userflatsharing", methods: ["GET"])]
+    
+    #[Route('/flatsharing/get', name: "userflatsharing", methods: ["GET"])]
     public function userflatsharing()
     {
         $tokenManager = new TokenManager();
