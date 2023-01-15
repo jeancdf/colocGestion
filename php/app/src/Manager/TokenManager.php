@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Manager;
+use DateTimeImmutable;
+use Firebase\JWT\Key;
+use Firebase\JWT\JWT;
 
 
 
@@ -19,9 +22,10 @@ class TokenManager
             $token->exp < $now->getTimestamp())
         {
             echo 'Token not found';
-            return false;
+            return null;
         }
-        return true;
+        $id = $token->ID;
+        return $id;
 
     }
 

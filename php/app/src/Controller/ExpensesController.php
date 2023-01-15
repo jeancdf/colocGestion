@@ -4,23 +4,19 @@ namespace App\Controller;
 
 use App\Factory\PDOFactory;
 use App\Manager\ExpensesManager;
+use App\Manager\TokenManager;
 use App\Route\Rouate;
-use DateTimeImmutable;
-use Firebase\JWT\Key;
-use Firebase\JWT\JWT;
-
 class ExpensesController extends AbstractController
 {
     #[Route('/expenses/add', name: "expenses", methods: ["POST"])]
     public function expenses()
     {   
         $tokenManager = new TokenManager();
-        $token = $tokenManager->checkToken(getallheaders()['authorization']);
-        if ($token == false) {
+        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        if ($id) {
             exit;
         }
         $manager = new ExpensesManager(new PDOFactory());
-        $id = $token->ID;
         $flatsharing_id = $_POST['flatsharing_id'];
         $date = $_POST['date'];
         $description = $_POST['description'];
@@ -33,12 +29,11 @@ class ExpensesController extends AbstractController
     public function deleteexpenses()
     {   
         $tokenManager = new TokenManager();
-        $token = $tokenManager->checkToken(getallheaders()['authorization']);
-        if ($token == false) {
+        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        if ($id) {
             exit;
         }
         $manager = new ExpensesManager(new PDOFactory());
-        $id = $token->ID;
         $expenses_id = $_POST['expenses_id'];
         $expenses = $manager->deleteExpenses($id, $expenses_id);
         var_dump('deleted');
@@ -48,12 +43,11 @@ class ExpensesController extends AbstractController
     public function getexpenses()
     {   
         $tokenManager = new TokenManager();
-        $token = $tokenManager->checkToken(getallheaders()['authorization']);
-        if ($token == false) {
+        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        if ($id) {
             exit;
         }
         $manager = new ExpensesManager(new PDOFactory());
-        $id = $token->ID;
         $flatsharing_id = $_POST['flatsharing_id'];
         $expenses = $manager->viewExpenses($flatsharing_id);
         var_dump($expenses);

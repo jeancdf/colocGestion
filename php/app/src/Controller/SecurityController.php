@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Factory\PDOFactory;
 use App\Manager\UserManager;
 use App\Route\Route;
+use App\Manager\TokenManager;
 use DateTimeImmutable;
 use Firebase\JWT\JWT;
 

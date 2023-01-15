@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Factory\PDOFactory;
 use App\Manager\ParticipantManager;
+use App\Manager\TokenManager;
 use App\Route\Rouate;
 use DateTimeImmutable;
 use Firebase\JWT\Key;
@@ -16,13 +17,11 @@ class ParticipantController extends AbstractController
     public function inviteParticipant()
     {   
         $tokenManager = new TokenManager();
-        $token = $tokenManager->checkToken(getallheaders()['authorization']);
-        if ($token == false) {
-            echo 'Token not found3';
+        $id = $tokenManager->checkToken(getallheaders()['authorization']);
+        if ($id) {
             exit;
         }
         $manager = new ParticipantManager(new PDOFactory());
-        $id = $token->ID;
         $flatsharing_Id = $_POST['flatsharing_Id'];
         $manager->inviteUserToFlatsharing($id, $flatsharing_Id);
         var_dump('invited');
