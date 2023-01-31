@@ -22,7 +22,9 @@ class FlatsharingController extends AbstractController
             exit;
         }
         $manager = new FlatsharingManager(new PDOFactory());
-        $manager->CreateFlatsharing($id, 'test');
+        $name = $_POST['name'];
+        var_dump($name);
+        $manager->CreateFlatsharing($id, $name);
         var_dump('created');
         exit;
     }

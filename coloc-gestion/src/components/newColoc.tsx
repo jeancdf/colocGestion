@@ -19,7 +19,7 @@ const NewColoc = () => {
             method: "POST",
             mode: "cors",
             body: new URLSearchParams({
-              token: `${token}`
+              name: `${name}`
             }),
             credentials: "include",
             headers: new Headers({
