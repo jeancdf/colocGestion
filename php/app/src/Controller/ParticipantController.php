@@ -17,7 +17,7 @@ class ParticipantController extends AbstractController
     {   
         $tokenManager = new TokenManager();
         $id = $tokenManager->checkToken(getallheaders()['authorization']);
-        if ($id) {
+        if (!$id) {
             exit;
         }
         $manager = new ParticipantManager(new PDOFactory());
