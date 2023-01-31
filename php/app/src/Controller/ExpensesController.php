@@ -13,8 +13,9 @@ class ExpensesController extends AbstractController
     public function expenses()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
-        if ($id) {
+        $auth = getallheaders()['authorization'];
+        $id = $tokenManager->checkToken($auth);
+        if (!$id) {
             exit;
         }
         $manager = new ExpensesManager(new PDOFactory());
@@ -30,8 +31,9 @@ class ExpensesController extends AbstractController
     public function deleteexpenses()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
-        if ($id) {
+        $auth = getallheaders()['authorization'];
+        $id = $tokenManager->checkToken($auth);
+        if (!$id) {
             exit;
         }
         $manager = new ExpensesManager(new PDOFactory());
@@ -44,8 +46,9 @@ class ExpensesController extends AbstractController
     public function getexpenses()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
-        if ($id) {
+        $auth = getallheaders()['authorization'];
+        $id = $tokenManager->checkToken($auth);
+        if (!$id) {
             exit;
         }
         $manager = new ExpensesManager(new PDOFactory());

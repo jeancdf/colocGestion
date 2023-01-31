@@ -3,11 +3,11 @@ import axios from 'axios';
 import { Form, FormControl, Button, Alert, Row, Col } from 'react-bootstrap';
 import {setJwt, getJwt} from "../variables/JWT"
 
-
 const NewColoc = () => {
 
  const token = getJwt();
  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+ axios.defaults.headers.common['Content-type'] = `application/x-www-form-urlencoded`;
   const [name, setName] = useState('');
   const [participants, setParticipants] = useState('');
   const [error, setError] = useState('');
@@ -15,13 +15,22 @@ const NewColoc = () => {
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     try {
-      const response = await axios.get('/flatsharing/create', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      console.log(response.data);
-    } catch (error) {
+      fetch('http://localhost:5656/flatsharing/create', {
+            method: "POST",
+            mode: "cors",
+            body: new URLSearchParams({
+              token: `${token}`
+            }),
+            credentials: "include",
+            headers: new Headers({
+                "Authorization" : `${token}`,
+                "Content-type":  "application/x-www-form-urlencoded"
+            })
+        })
+            .then(data => data.text())
+            .then(json => console.log(json))
+    }
+     catch (error) {
         console.error(error);
         setError('Error creating coloc');
       }

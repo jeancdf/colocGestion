@@ -4,7 +4,7 @@ namespace App\Manager;
 
 use App\Entity\Expenses;
 
-class Manager extends BaseManager
+class ExpensesManager extends BaseManager
 {
 
    

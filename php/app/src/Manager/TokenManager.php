@@ -9,10 +9,10 @@ use Firebase\JWT\JWT;
 
 class TokenManager 
 {
-    public function checkToken($token)
+    public function checkToken($tok)
     {
         $secretKey  = 'bGS6lzFqvvSQ8ALbOxatm7/Vk7mLQyzqaS34Q4oR1ew=';
-        $token = JWT::decode($token, new Key($secretKey, 'HS512'));
+        $token = JWT::decode($tok, new Key($secretKey, 'HS512'));
         $now = new DateTimeImmutable();
         $serverName = "localhost";
 
@@ -25,7 +25,7 @@ class TokenManager
         }
         $id = $token->ID;
         return $id;
-
+        
     }
 
 }

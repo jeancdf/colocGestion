@@ -12,17 +12,17 @@ use Firebase\JWT\JWT;
 
 class FlatsharingController extends AbstractController
 {
-    #[Route('/flatsharing/create', name: "flatsharing", methods: ["GET"])]
+    #[Route('/flatsharing/create', name: "flatsharing", methods: ["POST"])]
     public function flatsharing()
     {   
         $tokenManager = new TokenManager();
-        $auth = getallheaders()['Authorization'];
+        $auth = getallheaders()['authorization'];
         $id = $tokenManager->checkToken($auth);
-        if ($id) {
+        if (!$id) {
             exit;
         }
         $manager = new FlatsharingManager(new PDOFactory());
-        $flatsharing = $manager->CreateFlatsharing($id, 'test');
+        $manager->CreateFlatsharing($id, 'test');
         var_dump('created');
         exit;
     }
@@ -32,7 +32,7 @@ class FlatsharingController extends AbstractController
     {
         $tokenManager = new TokenManager();
         $id = $tokenManager->checkToken(getallheaders()['Authorization']);
-        if ($id) {
+        if (!$id) {
             exit;
         }
         $manager = new FlatsharingManager(new PDOFactory());

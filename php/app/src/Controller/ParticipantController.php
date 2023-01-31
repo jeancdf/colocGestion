@@ -16,7 +16,7 @@ class ParticipantController extends AbstractController
     public function inviteParticipant()
     {   
         $tokenManager = new TokenManager();
-        $id = $tokenManager->checkToken(getallheaders()['Authorization']);
+        $id = $tokenManager->checkToken(getallheaders()['authorization']);
         if ($id) {
             exit;
         }
@@ -30,14 +30,14 @@ class ParticipantController extends AbstractController
     public function acceptParticipant()
     {
         $tokenManager = new TokenManager();
-        $token = $tokenManager->checkToken(getallheaders()['Authorization']);
-        if ($token == false) {
+        $auth = getallheaders()['authorization'];
+        $id = $tokenManager->checkToken($auth);
+        if (!$id) {
             exit;
         }
         $manager = new ParticipantManager(new PDOFactory());
-        $id = $token->ID;
         $flatsharing_Id = $_POST['flatsharing_Id'];
-        $manager->acceptUserToFlatsharing($id, $flatsharing_Id);
+        $manager->acceptFlatsharingInv($id, $flatsharing_Id);
         var_dump('accepted');
         exit;
     }
@@ -45,14 +45,14 @@ class ParticipantController extends AbstractController
     public function declineParticipant()
     {
         $tokenManager = new TokenManager();
-        $token = $tokenManager->checkToken(getallheaders()['Authorization']);
-        if ($token == false) {
+        $auth = getallheaders()['authorization'];
+        $id = $tokenManager->checkToken($auth);
+        if (!$id) {
             exit;
         }
         $manager = new ParticipantManager(new PDOFactory());
-        $id = $token->ID;
         $flatsharing_Id = $_POST['flatsharing_Id'];
-        $manager->declineUserToFlatsharing($id, $flatsharing_Id);
+        $manager->declineFlatsharingInv($id, $flatsharing_Id);
         var_dump('declined');
         exit;
     }

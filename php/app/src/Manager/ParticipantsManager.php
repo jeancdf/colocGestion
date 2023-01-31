@@ -4,7 +4,7 @@ namespace App\Manager;
 
 use App\Entity\Participants;
 
-class Manager extends BaseManager
+class ParticipantManager extends BaseManager
 {
 
     // invite participants
